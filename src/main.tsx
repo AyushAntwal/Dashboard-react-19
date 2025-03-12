@@ -28,9 +28,13 @@ const theme = createTheme({
       paper: "#FFFFFF",
     },
     text: {
-      primary: "#000000",
-      secondary: "#000000",
+      primary: "#00000099",
+      secondary: "#00000090",
     },
+    action: {
+      disabled: '#FFF',
+      disabledBackground: '#00000061'
+    }
   },
   typography: {
     fontFamily: "Montserrat, Arial, sans-serif",
@@ -94,7 +98,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: 4,
-        },
+        }
       },
     },
   },

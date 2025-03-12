@@ -2,10 +2,10 @@ import { Suspense } from 'react';
 import './App.css'
 import route from './Routes.tsx';
 import { RouterProvider } from 'react-router';
+import Loading from './Loading.tsx';
 
 
 
-const Loading = () => <div>Loading...</div>;
 
 function App() {
   return (

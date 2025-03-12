@@ -10,8 +10,8 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import { NavLink } from 'react-router';
+import { Dashboard, Settings, Upload } from '@mui/icons-material';
 
 const drawerWidth = 240;
 
@@ -72,6 +72,13 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     }),
 );
 
+const navItems = [
+    { text: 'Dashboard', path: '/', icon: <Dashboard /> },
+    { text: 'Upload', path: '/upload', icon: <Upload /> },
+    { text: 'Settings', path: '/settings', icon: <Settings /> }
+];
+
+
 export default function SideNavbar({ open, handleDrawerClose }: any) {
     const theme = useTheme();
     return (
@@ -83,114 +90,106 @@ export default function SideNavbar({ open, handleDrawerClose }: any) {
             </DrawerHeader>
             <Divider />
             <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                    <ListItem key={text} disablePadding sx={{ display: 'block' }}>
+                {navItems.map((item) => (
+                    <ListItem key={item.text} disablePadding sx={{ display: 'block' }}>
                         <ListItemButton
-                            sx={[
-                                {
-                                    minHeight: 48,
-                                    px: 2.5,
+                            component={NavLink}
+                            to={item.path}
+                            sx={(theme) => ({
+                                minHeight: 48,
+                                px: 2.5,
+                                textDecoration: 'none',
+                                transition: 'all 0.3s',
+                                // ✅ Active State for Button
+                                '&.active': {
+                                    color: theme.palette.primary.main,
+                                    fontWeight: 'bold',
                                 },
-                                open
-                                    ? {
-                                        justifyContent: 'initial',
-                                    }
-                                    : {
-                                        justifyContent: 'center',
-                                    },
-                            ]}
+                            })}
                         >
+                            {/* ✅ Fix Icon Active Color */}
                             <ListItemIcon
-                                sx={[
-                                    {
-                                        minWidth: 0,
-                                        justifyContent: 'center',
-                                    },
-                                    open
-                                        ? {
-                                            mr: 3,
-                                        }
-                                        : {
-                                            mr: 'auto',
-                                        },
-                                ]}
+                                sx={(theme) => ({
+                                    minWidth: 0,
+                                    justifyContent: 'center',
+                                    marginRight: open ? 3 : 'auto',
+                                    color: 'inherit',
+                                })}
                             >
-                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                                {item.icon}
                             </ListItemIcon>
+
                             <ListItemText
-                                primary={text}
-                                sx={[
-                                    open
-                                        ? {
-                                            opacity: 1,
-                                        }
-                                        : {
-                                            opacity: 0,
-                                        },
-                                ]}
+                                primary={item.text}
+                                sx={{
+                                    opacity: open ? 1 : 0,
+                                    textTransform: 'capitalize',
+                                    color: 'inherit',
+                                }}
                             />
                         </ListItemButton>
                     </ListItem>
                 ))}
             </List>
-            <Divider />
-            <List>
-                {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                    <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-                        <ListItemButton
-                            sx={[
-                                {
-                                    minHeight: 48,
-                                    px: 2.5,
-                                },
-                                open
-                                    ? {
-                                        justifyContent: 'initial',
-                                    }
-                                    : {
-                                        justifyContent: 'center',
-                                    },
-                            ]}
-                        >
-                            <ListItemIcon
+            {/* <Divider />
+                <List>
+                    {['All mail', 'Trash', 'Spam'].map((text, index) => (
+                        <ListItem key={text} disablePadding sx={{ display: 'block' }}>
+                            <ListItemButton
                                 sx={[
                                     {
-                                        minWidth: 0,
-                                        justifyContent: 'center',
+                                        minHeight: 48,
+                                        px: 2.5,
                                     },
                                     open
                                         ? {
-                                            mr: 3,
+                                            justifyContent: 'initial',
                                         }
                                         : {
-                                            mr: 'auto',
+                                            justifyContent: 'center',
                                         },
                                 ]}
                             >
-                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                            </ListItemIcon>
-                            <ListItemText
-                                primary={text}
-                                sx={[
-                                    open
-                                        ? {
-                                            opacity: 1,
-                                        }
-                                        : {
-                                            opacity: 0,
+                                <ListItemIcon
+                                    sx={[
+                                        {
+                                            minWidth: 0,
+                                            justifyContent: 'center',
                                         },
-                                ]}
-                            />
-                        </ListItemButton>
-                    </ListItem>
-                ))}
-            </List>
+                                        open
+                                            ? {
+                                                mr: 3,
+                                            }
+                                            : {
+                                                mr: 'auto',
+                                            },
+                                    ]}
+                                >
+                                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary={text}
+                                    sx={[
+                                        open
+                                            ? {
+                                                opacity: 1,
+                                            }
+                                            : {
+                                                opacity: 0,
+                                            },
+                                    ]}
+                                />
+                            </ListItemButton>
+                        </ListItem>
+                    ))}
+                </List> */}
         </Drawer>
     )
-} 
+}
 
 
 SideNavbar.prototype = {
     open: PropTypes.bool.isRequired,
     handleDrawerClose: PropTypes.func.isRequired
 }
+

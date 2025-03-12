@@ -3,10 +3,8 @@ import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import SideNavbar from './components/SideNavbar';
 import Header from './components/Header';
-import { styled } from '@mui/material';
+import {  styled } from '@mui/material';
 import { Outlet } from 'react-router';
-import { config } from '../../config/config';
-const apiUrl = import.meta.env.VITE_API_URL;
 
 const DrawerHeader = styled('div')(({ theme }) => ({
     display: 'flex',
@@ -25,14 +23,12 @@ export default function Dashboard() {
     const handleDrawerClose = () => {
         setOpen(false);
     };
-
-    console.log("API URL:", config);
     return (
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
             <Header open={open} handleDrawerOpen={handleDrawerOpen} />
             <SideNavbar open={open} handleDrawerClose={handleDrawerClose} />
-            <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+            <Box component="main" sx={{ flexGrow: 1, p: 3, backgroundColor: '#F3F3F3', minHeight: '100vh' }}>
                 <DrawerHeader />
                 <Outlet />
             </Box>

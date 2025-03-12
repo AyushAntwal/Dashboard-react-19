@@ -15,6 +15,7 @@ const AppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== 'open',
 })<AppBarProps>(({ theme }) => ({
     zIndex: theme.zIndex.drawer + 1,
+    boxShadow: 'none',
     transition: theme.transitions.create(['width', 'margin'], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
@@ -37,7 +38,7 @@ const AppBar = styled(MuiAppBar, {
 
 export default function Header({ open, handleDrawerOpen }: any) {
     return (
-        <AppBar position="fixed" open={open}>
+        <AppBar color='inherit' position="fixed" open={open}>
             <Toolbar>
                 <IconButton
                     color="inherit"
