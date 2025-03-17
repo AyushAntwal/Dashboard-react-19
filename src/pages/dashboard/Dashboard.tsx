@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import SideNavbar from './components/SideNavbar';
 import Header from './components/Header';
-import {  styled } from '@mui/material';
+import { styled } from '@mui/material';
 import { Outlet } from 'react-router';
 
 const DrawerHeader = styled('div')(({ theme }) => ({
@@ -28,7 +28,12 @@ export default function Dashboard() {
             <CssBaseline />
             <Header open={open} handleDrawerOpen={handleDrawerOpen} />
             <SideNavbar open={open} handleDrawerClose={handleDrawerClose} />
-            <Box component="main" sx={{ flexGrow: 1, p: 3, backgroundColor: '#F3F3F3', minHeight: '100vh' }}>
+            <Box component="main"
+                sx={{
+                    flexGrow: 1,
+                    background: 'linear-gradient(180deg,rgba(33, 33, 33, 0.08) 30%, rgba(243, 243, 243, 0.5) 30%)',
+                    minHeight: '100vh'
+                }}>
                 <DrawerHeader />
                 <Outlet />
             </Box>

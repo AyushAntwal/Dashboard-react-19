@@ -19,6 +19,7 @@ const theme = createTheme({
       dark: "#0D47A1", // 900
       contrastText: "#FFFFFF",
     },
+
     error: {
       main: "#B00020",
       contrastText: "#FFFFFF",
@@ -28,7 +29,7 @@ const theme = createTheme({
       paper: "#FFFFFF",
     },
     text: {
-      primary: "#00000099",
+      primary: "#000000",
       secondary: "#00000090",
     },
     action: {
@@ -98,6 +99,10 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: 4,
+        },
+        outlined: {
+          backgroundColor: '#fff',
+          color: '#000'
         }
       },
     },
